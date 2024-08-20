@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	Models "ginchat/models"
+	"time"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -21,16 +22,22 @@ func main() {
 
 	// // 迁移 schema
 	db.AutoMigrate(&Models.UserBasic{})
-
+	var defaultTime = time.Date(1970, 1, 1, 0, 0, 1, 0, time.UTC)
 	// // Create
-	user := &Models.UserBasic{}
-	user.Name = "jinzhu"
-	user.Password = "123123"
-	db.Create(user)
+
+	for i := 0; i < 100; i++ {
+		user := &Models.UserBasic{}
+		user.Name = "jinzhu" + string(i)
+		user.Password = "123123"
+		user.LoginTime = defaultTime
+		user.LogoutTime = defaultTime
+		user.HeartbeatTime = defaultTime
+		db.Create(user)
+	}
 
 	// // Read
-	fmt.Println("Read")
-	fmt.Println(db.First(user, 1)) // find product with integer primary key
+	// fmt.Println("Read")
+	// fmt.Println(db.First(user, 1)) // find product with integer primary key
 
 	// // Update - 将 product 的 price 更新为 200
 	// db.Model(&product).Update("Price", 200)
