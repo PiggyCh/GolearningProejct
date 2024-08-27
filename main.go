@@ -12,6 +12,7 @@ import (
 // swagger embed files
 func main() {
 	utils.InitConfig()
+	utils.InitRedis()
 	utils.InitMySQL()
 	r := router.Router()
 	r.Run(":8080")

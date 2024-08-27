@@ -1,2 +1,8 @@
 mysql:
  dns: "root:123123123@tcp(127.0.0.1:3306)/ginchat?charset=utf8mb4&parseTime=True&loc=Local"
+redis:
+  addr: "redis-16664.c321.us-east-1-2.ec2.redns.redis-cloud.com:16664"
+  password: "pqbVzAczNycMRGoqrBJa4Z0WPlzUYFTU"
+  db: 0
+  pool_size: 100
+  minIdleConn: 10
